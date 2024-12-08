@@ -14,6 +14,7 @@ let
     mkOption
     mkIf
     ;
+   inherit (flake.packages.${pkgs.stdenv.hostPlatform.system}) netatmoexporter;
 in
 {
   options = {
