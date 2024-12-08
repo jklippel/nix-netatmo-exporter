@@ -62,13 +62,6 @@ in
         '';
       };
 
-      package = mkOption {
-        type = types.package;
-        default = "netatmoexporter";
-        description = ''
-          The netatmo exporter package to use with the service.
-        '';
-      };
     };
   };
   config = lib.mkIf cfg.enable {
@@ -89,7 +82,7 @@ in
         User = "netatmoxport";
         Group = "netatmoxport";
         Restart = "always";
-        ExecStart = "${lib.getBin cfg.package}/bin/netatmo-exporter";
+        ExecStart = "${lib.getBin netatmoexporter}/bin/netatmo-exporter";
         StateDirectory = "netatmoxport";
         StateDirectoryMode = "0750";
       };
