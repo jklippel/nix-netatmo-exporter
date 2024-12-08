@@ -88,10 +88,10 @@ in
       };
 
       environment = {
-        NETATMO_CLIENT_ID="${cfg.services.netatmoexporter.clientId}";
-        NETATMO_CLIENT_SECRET="${cfg.services.netatmoexporter.secret}";
-        NETATMO_EXPORTER_TOKEN_FILE= "${cfg.services.netatmoexporter.dataDir}/${cfg.services.netatmoexporter.tokenFile}";
-        NETATMO_LOG_LEVEL= "${cfg.services.netatmoexporter.logLevel}";
+        NETATMO_CLIENT_ID="${config.services.netatmoexporter.clientId}";
+        NETATMO_CLIENT_SECRET="${config.services.netatmoexporter.secret}";
+        NETATMO_EXPORTER_TOKEN_FILE= "${config.services.netatmoexporter.dataDir}/${config.services.netatmoexporter.tokenFile}";
+        NETATMO_LOG_LEVEL= "${config.services.netatmoexporter.logLevel}";
       };
 
     };
