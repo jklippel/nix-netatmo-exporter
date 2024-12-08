@@ -8,7 +8,7 @@ flake:
 
 let
   cfg = self.config.services.netatmoexporter;
-  inherit(nixpkgs.lib)
+  inherit(lib)
     types
     mkEnableOption
     mkOption
@@ -25,7 +25,7 @@ in
       dataDir = mkOption {
         type = types.str;
         default = "/var/lib/netatmoexporter";
-        description = nixpkgs.lib.mdDoc ''
+        description = lib.mdDoc ''
           The path where the netatmo export keeps its config.
          '';
       };
@@ -33,7 +33,7 @@ in
       clientId = mkOption {
         type = types.str;
         default = null;
-        description = nixpkgs.lib.mdDocs ''
+        description = lib.mdDocs ''
           The clientId of the netatmo app associated with your setup.
           '';
       };
@@ -41,7 +41,7 @@ in
       secret = mkOption {
         type = types.str;
         default = null;
-        description = nixpkgs.lib.mdDocs ''
+        description = lib.mdDocs ''
           The secret of the netatmo app associated with your setup.
           '';
       };
@@ -49,7 +49,7 @@ in
       tokenFile = mkOption {
         type = types.str;
         default = "token.json";
-        description = nixpkgs.lib.mdDocs ''
+        description = lib.mdDocs ''
           The name to the token file to use.
           '';
       };
@@ -57,7 +57,7 @@ in
       logLevel = mkOption {
         type = types.str;
         default = "info";
-        description = nixpkgs.lib.mdDocs ''
+        description = lib.mdDocs ''
           The log level to use with netatmo exporter.
         '';
       };
@@ -81,7 +81,7 @@ in
             User = "netatmoxport";
             Group = "netatmoxport";
             Restart = "always";
-            ExecStart = "${nixpkgs.lib.getBin cfg.package}/bin/netatmo-exporter";
+            ExecStart = "${lib.getBin cfg.package}/bin/netatmo-exporter";
             StateDirectory = "netatmoxport";
             StateDirectoryMode = "0750";
           };
