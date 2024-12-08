@@ -62,13 +62,6 @@ in
         '';
       };
 
-      package = mkOption {
-        type = types.package;
-        default = pkgs.netatmoexporter;
-        defaultText = "pkgs.netatmoexporter";
-        description = "Package to use with systemd.";
-      };
-
     };
   };
   config = lib.mkIf cfg.enable {
@@ -89,7 +82,7 @@ in
         User = "netatmoxport";
         Group = "netatmoxport";
         Restart = "always";
-        ExecStart = "${cfg.package}/bin/netatmo-exporter";
+        ExecStart = "/bin/netatmo-exporter";
         StateDirectory = "netatmoxport";
         StateDirectoryMode = "0750";
       };
