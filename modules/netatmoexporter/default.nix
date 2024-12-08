@@ -7,7 +7,7 @@ flake:
 }:
 
 let
-  cfg = self.config.services.netatmoexporter;
+  cfg = config.services.netatmoexporter;
   inherit(lib)
     types
     mkEnableOption
