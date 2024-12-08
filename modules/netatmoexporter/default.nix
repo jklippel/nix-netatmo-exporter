@@ -1,5 +1,6 @@
 flake:
 {
+  self,
   config,
   lib,
   pkgs,
