@@ -64,7 +64,7 @@ in
 
       package = mkOption {
         type = types.package;
-        default = pkgs.netatmoexporter;
+        default = pkgs.netatmo-exporter;
         defaultText = "pkgs.netatmoexporter";
         description = "Package to use with systemd.";
       };
