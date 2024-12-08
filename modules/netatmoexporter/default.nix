@@ -1,6 +1,5 @@
 flake:
 {
-  self,
   config,
   lib,
   pkgs,
@@ -83,7 +82,7 @@ in
         User = "netatmoxport";
         Group = "netatmoxport";
         Restart = "always";
-        ExecStart = "${self.packages.${pkgs.system}.default}/bin/netatmo-exporter";
+        ExecStart = "${cfg.package}/bin/netatmo-exporter";
         StateDirectory = "netatmoxport";
         StateDirectoryMode = "0750";
       };
