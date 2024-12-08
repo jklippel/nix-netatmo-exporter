@@ -82,7 +82,7 @@ in
         User = "netatmoxport";
         Group = "netatmoxport";
         Restart = "always";
-        ExecStart = "${pkgs.x86_64-linux.default}/bin/netatmo-exporter";
+        ExecStart = "${pkgs.${pkgs.system}.default}/bin/netatmo-exporter";
         StateDirectory = "netatmoxport";
         StateDirectoryMode = "0750";
       };
