@@ -61,8 +61,9 @@ in
           The log level to use with netatmo exporter.
         '';
       };
+    };
   };
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     users.user.netatmoxport = {
     description = "Netatmo Exporter daemon user";
       isSystemUser = true;
@@ -94,5 +95,4 @@ in
 
     };
   };
-};
 }
