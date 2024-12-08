@@ -64,7 +64,7 @@ in
     };
   };
   config = lib.mkIf cfg.enable {
-    users.user.netatmoxport = {
+    users.users.netatmoxport = {
     description = "Netatmo Exporter daemon user";
       isSystemUser = true;
       group = "netatmoxport";
