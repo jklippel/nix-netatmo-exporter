@@ -64,7 +64,7 @@ in
 
       package = mkOption {
         type = types.package;
-        default = netatmoexporter;
+        default = "netatmoexporter";
         description = ''
           The netatmo exporter package to use with the service.
         '';
