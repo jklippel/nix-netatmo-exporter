@@ -61,40 +61,38 @@ in
           The log level to use with netatmo exporter.
         '';
       };
+  };
+  config = mkIf cfg.enable {
+    users.user.netatmoxport = {
+    description = "Netatmo Exporter daemon user";
+      isSystemUser = true;
+      group = "netatmoxport";
+    };
 
-      config = mkIf cfg.enable {
+    users.groups.netatmoxport = { };
 
-        users.user.netatmoxport = {
-          description = "Netatmo Exporter daemon user";
-          isSystemUser = true;
-          group = "netatmoxport";
-        };
+    systemd.services.netatmoexporter = {
+      description = "Netatmo Exporter for Prometheus";
+      after = [ "network-online.target" ];
+      wants = [ "network-online.target" ];
 
-        users.groups.netatmoxport = { };
-
-        systemd.services.netatmoexporter = {
-          description = "Netatmo Exporter for Prometheus";
-          after = [ "network-online.target" ];
-          wants = [ "network-online.target" ];
-
-          serviceConfig = {
-            User = "netatmoxport";
-            Group = "netatmoxport";
-            Restart = "always";
-            ExecStart = "${lib.getBin cfg.package}/bin/netatmo-exporter";
-            StateDirectory = "netatmoxport";
-            StateDirectoryMode = "0750";
-          };
-
-          environment = {
-            NETATMO_CLIENT_ID="${cfg.services.netatmoexporter.clientId}";
-            NETATMO_CLIENT_SECRET="${cfg.services.netatmoexporter.secret}";
-            NETATMO_EXPORTER_TOKEN_FILE= "${cfg.services.netatmoexporter.dataDir}/${cfg.services.netatmoexporter.tokenFile}";
-            NETATMO_LOG_LEVEL= "${cfg.services.netatmoexporter.logLevel}";
-          };
-
-        };
+      serviceConfig = {
+        User = "netatmoxport";
+        Group = "netatmoxport";
+        Restart = "always";
+        ExecStart = "${lib.getBin cfg.package}/bin/netatmo-exporter";
+        StateDirectory = "netatmoxport";
+        StateDirectoryMode = "0750";
       };
+
+      environment = {
+        NETATMO_CLIENT_ID="${cfg.services.netatmoexporter.clientId}";
+        NETATMO_CLIENT_SECRET="${cfg.services.netatmoexporter.secret}";
+        NETATMO_EXPORTER_TOKEN_FILE= "${cfg.services.netatmoexporter.dataDir}/${cfg.services.netatmoexporter.tokenFile}";
+        NETATMO_LOG_LEVEL= "${cfg.services.netatmoexporter.logLevel}";
+      };
+
     };
   };
+};
 }
