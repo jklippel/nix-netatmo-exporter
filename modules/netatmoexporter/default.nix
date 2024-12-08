@@ -61,6 +61,14 @@ in
           The log level to use with netatmo exporter.
         '';
       };
+
+      package = mkOption {
+        type = types.package;
+        default = netatmoexporter;
+        description = ''
+          The netatmo exporter package to use with the service.
+        '';
+      };
     };
   };
   config = lib.mkIf cfg.enable {
